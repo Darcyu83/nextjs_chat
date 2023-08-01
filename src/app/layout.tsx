@@ -12,8 +12,9 @@ function RootLayout({ children }: IProps) {
         <title>asdf</title>
       </head>
       <body>
+        <h1>RootLayout</h1>
         {/* <SessionContainer session={session}>{children}</SessionContainer> */}
-        MainRootLayout : {children}
+        {children}
       </body>
     </html>
   );

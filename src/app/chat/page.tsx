@@ -4,7 +4,7 @@ interface IProps {}
 
 function page(props: IProps) {
   return (
-    <div style={{}}>
+    <div className=".container">
       <h1>page</h1>
     </div>
   );

@@ -11,8 +11,6 @@ function page(params: IProps) {
     <div style={{}}>
       <h1>page</h1>
       {slug}
-
-      {JSON.stringify(params)}
     </div>
   );
 }
