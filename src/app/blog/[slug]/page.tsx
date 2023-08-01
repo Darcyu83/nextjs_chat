@@ -20,18 +20,18 @@ function page(params: IProps) {
 export default page;
 
 // Return a list of `params` to populate the [slug] dynamic segment
-export async function generateStaticParams() {
-  const posts = await new Promise<string[]>((res, rej) => {
-    setTimeout(() => {
-      res(["dog", "cat"]);
-    }, 2000);
-  });
+// export async function generateStaticParams() {
+//   const posts = await new Promise<string[]>((res, rej) => {
+//     setTimeout(() => {
+//       res(["dog", "cat"]);
+//     }, 2000);
+//   });
 
-  const arr = posts.map((post) => ({
-    slug: post,
-  }));
+//   const arr = posts.map((post) => ({
+//     slug: post,
+//   }));
 
-  console.log("arr ====   , ", arr);
+//   console.log("arr ====   , ", arr);
 
-  return arr;
-}
+//   return arr;
+// }
