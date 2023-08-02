@@ -1,0 +1,55 @@
+$variable: true;
+
+@import "../styles/constants";
+
+.border {
+  // border-radius: 5px;
+  border: 1px solid $my-color;
+  color: $my-color;
+  border-radius: if($variable, 5px, null);
+}
+
+@mixin inline-animation($duration) {
+  $name: inline-#{unique-id()};
+
+  @keyframes #{$name} {
+    @content;
+  }
+
+  animation-name: $name;
+  animation-duration: $duration;
+  animation-iteration-count: infinite;
+}
+
+.custom {
+  background: {
+    color: blue;
+    blend-mode: multiply;
+  }
+  color: white;
+}
+
+.pulse {
+  @include inline-animation(2s) {
+    from {
+      background-color: yellow;
+    }
+    to {
+      background-color: red;
+    }
+  }
+}
+
+.enlarge {
+  font-size: 14px;
+  // border: 1px solid red;
+  transition: {
+    property: font-size;
+    duration: 4s;
+    delay: 0.2s;
+  }
+
+  &:hover {
+    font-size: 32px;
+  }
+}
