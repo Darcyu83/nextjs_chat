@@ -1,5 +1,9 @@
 import React, { ReactNode } from "react";
+
+import "./globals.css";
+
 import styles from "./layout.module.scss";
+
 interface IProps {
   children: ReactNode;
 }
@@ -19,6 +23,9 @@ function RootLayout({ children }: IProps) {
         <div className={[styles.enlarge, styles.border].join(" ")}>
           Hover Transition Test
         </div>
+
+        <div className={styles.flow}>아</div>
+
         {children}
       </body>
     </html>

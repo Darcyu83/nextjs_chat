@@ -5,8 +5,8 @@ $variable: true;
 
 .border {
   // border-radius: 5px;
-  border: 1px solid $my-color;
-  color: $my-color;
+  border: 1px solid $my-color-blue;
+  color: $my-color-blue;
   border-radius: if($variable, 5px, null);
 }
 
@@ -22,6 +22,54 @@ $variable: true;
   animation-iteration-count: infinite;
 }
 
+@keyframes flowAni {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@mixin flowKeyframes($name) {
+  @keyframes #{$name} {
+    // @content;
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  animation: $name;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.flow {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+
+  @include flowKeyframes(flowAni);
+
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  // animation: gradient 15s ease infinite;
+}
+
 .custom {
   background: {
     color: blue;
@@ -33,7 +81,7 @@ $variable: true;
 .pulse {
   @include inline-animation(2s) {
     from {
-      background-color: yellow;
+      background-color: blue;
     }
     to {
       background-color: red;
