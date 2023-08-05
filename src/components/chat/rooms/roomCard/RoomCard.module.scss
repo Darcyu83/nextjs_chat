@@ -1,0 +1,27 @@
+.box {
+  background: #333;
+  padding: 20px;
+  display: grid;
+  font-size: 20px;
+  place-items: center;
+  text-align: center;
+  color: #fff;
+
+  transition: 0.5s;
+
+  //   height: fit-content;
+
+  //   border: 1px solid magenta;
+}
+
+.purple {
+  background: #7641c9 !important;
+}
+
+.box:hover {
+  background: #e91e63 !important;
+}
+
+.content {
+  background: none;
+}

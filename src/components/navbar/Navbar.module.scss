@@ -1,0 +1,35 @@
+@import "../../styles/animation";
+
+.nav {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.nav > a {
+  display: inline-block;
+  padding: 4px 16px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-repeat: repeat-x;
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.nav > .active {
+  background-clip: inherit;
+  -webkit-background-clip: inherit;
+  color: white;
+
+  background-size: 300%;
+
+  @include flowKeyframes(flowAni);
+
+  border-radius: 10px 0px 10px 0px;
+}

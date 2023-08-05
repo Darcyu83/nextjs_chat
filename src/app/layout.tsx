@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 import "./globals.css";
 
 import styles from "./layout.module.scss";
-
+import Navbar from "../components/navbar/Navbar";
 interface IProps {
   children: ReactNode;
 }
@@ -16,17 +16,19 @@ function RootLayout({ children }: IProps) {
         <title>asdf</title>
       </head>
       <body>
-        <h1>RootLayout</h1>
-        {/* <SessionContainer session={session}>{children}</SessionContainer> */}
+        {/* 헤더 : 네비게이션 메뉴 */}
+        <header className={styles.header}>
+          <Navbar />
+        </header>
 
-        <div className={[styles.custom, styles.pulse].join(" ")}>Scss Test</div>
-        <div className={[styles.enlarge, styles.border].join(" ")}>
-          Hover Transition Test
-        </div>
+        {/* 좌측 메뉴 */}
+        <div className={styles.aside}>dd</div>
 
-        <div className={styles.flow}>아</div>
+        {/* 메인 컨텐트 */}
+        <div className={styles.main}>{children}</div>
 
-        {children}
+        {/* 푸터 */}
+        <footer className={styles.footer}>푸터</footer>
       </body>
     </html>
   );

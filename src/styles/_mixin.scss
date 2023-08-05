@@ -1,0 +1,7 @@
+@import "./variables";
+
+@mixin grid-tile-breaks {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}

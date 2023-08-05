@@ -1,19 +1,27 @@
+import { Metadata } from "next";
 import React from "react";
-
+import Rooms from "../components/chat/rooms/Rooms";
+import styles from "./Main.module.scss";
 interface IProps {
-  params: { rtnMsg: string };
+  // params: { rtnMsg: string };
 }
 
-function App({ params }: IProps) {
+export const metadata: Metadata = {
+  title: "메인화면",
+};
+
+function Main({}: IProps) {
   return (
-    <div style={{}}>
-      <h1>App / </h1>
-      {params.rtnMsg}
+    <div className={styles.container}>
+      {/* 챗룸 리스트 */}
+      <Rooms />
+      {/* 블로그 리스트 */}
+      {/* <Rooms /> */}
     </div>
   );
 }
 
-export default App;
+export default Main;
 
 export const generateStaticParams = async (ctx: any) => {
   const rtnMsg = await new Promise<string>((res, rej) => {

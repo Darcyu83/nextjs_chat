@@ -2,60 +2,37 @@ $variable: true;
 
 @import "../styles/constants";
 @import "../styles//variables";
+@import "../styles/animation";
+
+.header {
+  grid-area: header;
+  border: 1px solid green;
+  display: grid;
+  place-items: center;
+}
+.aside {
+  grid-area: aside;
+  border: 1px solid pink;
+}
+
+.main {
+  grid-area: main;
+  display: grid;
+  place-items: center;
+}
+
+.footer {
+  grid-area: footer;
+  border: 1px solid purple;
+  display: grid;
+  place-items: center;
+}
 
 .border {
   // border-radius: 5px;
   border: 1px solid $my-color-blue;
   color: $my-color-blue;
   border-radius: if($variable, 5px, null);
-}
-
-@mixin inline-animation($duration) {
-  $name: inline-#{unique-id()};
-
-  @keyframes #{$name} {
-    @content;
-  }
-
-  animation-name: $name;
-  animation-duration: $duration;
-  animation-iteration-count: infinite;
-}
-
-@keyframes flowAni {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@mixin flowKeyframes($name) {
-  @keyframes #{$name} {
-    // @content;
-    0% {
-      background-position: 0% 50%;
-    }
-
-    50% {
-      background-position: 100% 50%;
-    }
-
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  animation: $name;
-  animation-duration: 2s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
 }
 
 .flow {
@@ -66,8 +43,14 @@ $variable: true;
   @include flowKeyframes(flowAni);
 
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  // background: radial-gradient(
+  //   circle at 100%,
+  //   #333,
+  //   #333 50%,
+  //   #eee 75%,
+  //   #333 75%
+  // );
   background-size: 400% 400%;
-  // animation: gradient 15s ease infinite;
 }
 
 .custom {
