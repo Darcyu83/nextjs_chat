@@ -18,7 +18,9 @@ $variable: true;
 .main {
   grid-area: main;
   display: grid;
-  place-items: center;
+  // place-items: center;
+
+  border: 1px dashed teal;
 }
 
 .footer {

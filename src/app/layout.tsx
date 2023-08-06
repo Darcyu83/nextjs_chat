@@ -8,13 +8,18 @@ interface IProps {
   children: ReactNode;
 }
 
-function RootLayout({ children }: IProps) {
+export const metaData = {
+  title: "NextJs Chat Project",
+  description: "NodeJs tutorial with NextJs",
+};
+
+async function RootLayout({ children }: IProps) {
   return (
     <html>
-      <head>
+      {/* <head>
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>asdf</title>
-      </head>
+        <title>NextJs Chat Project</title>
+      </head> */}
       <body>
         {/* 헤더 : 네비게이션 메뉴 */}
         <header className={styles.header}>

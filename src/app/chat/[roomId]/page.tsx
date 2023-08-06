@@ -1,14 +1,26 @@
 import React from "react";
 
 interface IProps {
-  roomid: number;
+  params: {
+    roomId: number;
+  };
 }
 
-function ChatRoom(props: IProps) {
-  const { roomid } = props;
+async function ChatRoom({ params }: IProps) {
+  const { roomId } = params;
+
+  const data: { id: number; title: string; content: string } = await fetch(
+    `http://localhost:9999/topics/${roomId}`
+  )
+    .then((res) => res.json())
+    .then((data) => data);
+
   return (
     <div style={{}}>
-      <h1>ChatRoom : {roomid}번</h1>
+      <h1>Topics</h1>
+      <p>id : {roomId}</p>
+      <p>title : {data.title}</p>
+      <p>content : {data.content}</p>
     </div>
   );
 }

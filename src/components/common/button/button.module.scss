@@ -1,0 +1,14 @@
+.outlined {
+  margin: 6px;
+  width: fit-content;
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 5px;
+  border: 1px solid #e77e;
+  color: #e77e;
+
+  &:hover {
+    background: #e76a7e;
+    color: white;
+  }
+}

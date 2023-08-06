@@ -1,20 +1,17 @@
 "use client";
-
+import { Route } from "next";
 import { useRouter } from "next/navigation";
 import React from "react";
 
 interface IProps {}
 
-function ChatMain(props: IProps) {
+function TopicRegForm(props: IProps) {
   const router = useRouter();
   return (
-    <div className=".container">
-      <h1>Chat Landing page</h1>
-
-      <p style={{ color: "gray" }}>채팅방 만들기</p>
+    <div style={{}}>
       <p>토픽 만들기 튜토리얼</p>
       <form
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
 
           const topic = e.currentTarget.topic;
@@ -41,23 +38,29 @@ function ChatMain(props: IProps) {
               content: content.value,
             }),
           };
-          fetch("http://localhost:9999/topics", options)
+          await fetch("http://localhost:9999/topics", options)
             .then((res) => res.json())
             .then((result) => {
               console.log("fetch result ==== ", result.id);
 
-              router.push(`/chat/${result.id}`);
+              router.push(`/tutorial/details/${result.id}`);
             });
         }}
       >
-        <input type="text" name="topic" placeholder="토픽 타이틀" />
+        <div>
+          <input type="text" name="topic" placeholder="토픽 타이틀" />
+        </div>
 
-        <textarea name="content" placeholder="내용" />
+        <div>
+          <textarea name="content" placeholder="내용" />
+        </div>
 
-        <input type="submit" value="create" />
+        <div>
+          <input type="submit" value="create" />
+        </div>
       </form>
     </div>
   );
 }
 
-export default ChatMain;
+export default TopicRegForm;

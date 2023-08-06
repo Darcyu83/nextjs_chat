@@ -4,8 +4,8 @@ interface IProps {
   params: { slug: string };
 }
 
-function page(params: IProps) {
-  const { slug } = params.params;
+function page(props: IProps) {
+  const { slug } = props.params;
 
   return (
     <div style={{}}>
