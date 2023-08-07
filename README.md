@@ -16,3 +16,5 @@ yarn add -D typescript-plugin-css-modules <!-- auto complete -->
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true
   }
+
+# npx json-server --port 9999 --watch db.json

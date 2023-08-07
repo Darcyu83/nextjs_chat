@@ -7,54 +7,50 @@ interface IProps {}
 
 function ChatMain(props: IProps) {
   const router = useRouter();
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const { roomNm, capacity } = e.currentTarget;
+
+    function assertIsFormElment(
+      el: Element | HTMLButtonElement | HTMLSelectElement
+    ): asserts el is HTMLInputElement {
+      if (!("value" in el)) {
+        return;
+      }
+    }
+
+    assertIsFormElment(roomNm);
+    assertIsFormElment(capacity);
+
+    const params = {
+      roomNm: roomNm.value,
+      capacity: capacity.value,
+    };
+
+    console.log("form data check ==== ", params);
+  };
   return (
     <div className=".container">
       <h1>Chat Landing page</h1>
 
-      <p style={{ color: "gray" }}>채팅방 만들기</p>
-      <p>토픽 만들기 튜토리얼</p>
+      <h1>채팅방 만들기</h1>
       <form
         onSubmit={(e) => {
-          e.preventDefault();
-
-          const topic = e.currentTarget.topic;
-
-          const content = e.currentTarget.content;
-
-          function assertIsFormFieldElement(
-            element: Element | HTMLSelectElement | HTMLButtonElement
-          ): asserts element is HTMLInputElement {
-            if (!("value" in element)) throw new Error("폼 요소가 아님");
-          }
-
-          assertIsFormFieldElement(topic);
-          assertIsFormFieldElement(content);
-
-          console.log("values ==== ", topic.value, content.value);
-
-          const options = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-
-            body: JSON.stringify({
-              title: topic.value,
-              content: content.value,
-            }),
-          };
-          fetch("http://localhost:9999/topics", options)
-            .then((res) => res.json())
-            .then((result) => {
-              console.log("fetch result ==== ", result.id);
-
-              router.push(`/chat/${result.id}`);
-            });
+          onSubmit(e);
         }}
       >
-        <input type="text" name="topic" placeholder="토픽 타이틀" />
-
-        <textarea name="content" placeholder="내용" />
-
-        <input type="submit" value="create" />
+        <ol>
+          <li>
+            <input placeholder="방제목" name="roomNm" />
+          </li>
+          <li>
+            <input placeholder="방인원" name="capacity" />
+          </li>
+          <li>
+            <input type="submit" value={"제출"} />
+          </li>
+        </ol>
       </form>
     </div>
   );

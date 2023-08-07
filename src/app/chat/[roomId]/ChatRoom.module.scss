@@ -1,0 +1,34 @@
+.container {
+  padding: 16px;
+  flex-direction: column;
+  display: flex;
+  gap: 20px;
+}
+
+.content {
+  border: 1px solid blue;
+  height: 100%;
+  display: flex;
+}
+
+.content-left {
+  width: 100%;
+  border: 1px solid purple;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.content-right {
+  width: 100%;
+  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@import "../../../styles/mixin";
+
+.page-title {
+  @include page-title;
+}
