@@ -7,13 +7,14 @@ interface IProps {
 }
 
 async function TutorialLayout({ children }: IProps) {
-  const data: { id: number; title: string; content: string }[] = await fetch(
-    "http://localhost:9999/topics",
-    // { next: { revalidate: 0 } }
-    { cache: "no-store" }
-  )
-    .then((res) => res.json())
-    .then((data) => data);
+  const data: { id: number; title: string; content: string }[] = [];
+  //   await fetch(
+  //   "http://localhost:9999/topics",
+  //   // { next: { revalidate: 0 } }
+  //   { cache: "no-store" }
+  // )
+  //   .then((res) => res.json())
+  //   .then((data) => data);
 
   return (
     <div className={styles.container}>

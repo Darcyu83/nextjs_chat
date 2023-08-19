@@ -15,13 +15,13 @@ function ClientSideRendering({ params }: IProps) {
 
   //   클라이언트 컴포넌트  test
   useEffect(() => {
-    fetch("http://localhost:9999/topics")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setData(data);
-      });
+    // fetch("http://localhost:9999/topics")
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     setData(data);
+    //   });
   }, []);
 
   return (

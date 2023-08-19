@@ -4,6 +4,18 @@ $variable: true;
 @import "../styles//variables";
 @import "../styles/animation";
 
+.mainGridArea {
+  padding: 0 16px;
+  min-height: 100vh;
+
+  color: rgb(var(--foreground-rgb));
+  display: grid;
+  grid-template-areas: "header header" "aside main" "footer footer";
+  grid-template-columns: minmax(120px, 200px) minmax(250px, 1fr);
+  grid-template-rows: 60px 1fr 60px;
+  gap: 8px;
+}
+
 .header {
   grid-area: header;
   border: 1px solid green;
@@ -86,4 +98,32 @@ $variable: true;
   &:hover {
     font-size: 32px;
   }
+}
+
+.container-100-percent {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+
+  //   overflow: hidden;
+}
+
+.title {
+  position: relative;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.titleContent {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.border-red {
+  border: 1px solid red;
+}
+
+.border-dodgerblue {
+  border: 1px dashed dodgerblue;
 }
