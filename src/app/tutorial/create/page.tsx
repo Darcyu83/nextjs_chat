@@ -38,13 +38,13 @@ function TopicRegForm(props: IProps) {
               content: content.value,
             }),
           };
-          await fetch("http://localhost:9999/topics", options)
-            .then((res) => res.json())
-            .then((result) => {
-              console.log("fetch result ==== ", result.id);
+          // await fetch("http://localhost:9999/topics", options)
+          //   .then((res) => res.json())
+          //   .then((result) => {
+          //     console.log("fetch result ==== ", result.id);
 
-              router.push(`/tutorial/details/${result.id}`);
-            });
+          //     router.push(`/tutorial/details/${result.id}`);
+          //   });
         }}
       >
         <div>

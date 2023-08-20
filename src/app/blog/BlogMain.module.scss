@@ -1,9 +1,23 @@
-.container-100-percent {
+@import "../../styles/mixin";
+
+.container {
   width: 100%;
   height: 100%;
-  border: 1px solid black;
+  overflow: hidden;
+}
 
-  //   overflow: hidden;
+.content {
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+}
+
+.label {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.ellipsis {
+  @include text-ellipsis;
 }
 
 .title {
@@ -12,20 +26,4 @@
   position: relative;
   padding-top: 8px;
   padding-bottom: 8px;
-}
-
-.titleContent {
-  width: 100%;
-  border: 1px solid red;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.border-red {
-  border: 1px solid red;
-}
-
-.border-dodgerblue {
-  border: 1px dashed dodgerblue;
 }

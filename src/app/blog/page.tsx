@@ -7,26 +7,16 @@ interface IProps {}
 
 function BlogMain(props: IProps) {
   return (
-    <div className={[styles["container-100-percent"]].join(" ")}>
-      <TextEllipsis />
-      {/* <div className={styles.title}>
-        <h1 style={{ width: "max-content", whiteSpace: "nowrap" }}>타이틀</h1>
-        <TextEllipsis
-          text="Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto delectus ad, rem debitis quis a quia sed consequuntur
-              dolores voluptatum iure accusantium qui animi molestiae dolore
-              reiciendis eos! Hic, neque?"
-        />
+    <div className={[styles["container"]].join(" ")}>
+      <div className={styles["content"]}>
+        <h1 className={styles.label}>Row flex Ellipsis</h1>
+        <span className={styles["ellipsis"]}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, rem
+          libero quae beatae sed, commodi ex sint omnis et voluptate doloribus
+          eligendi inventore est? Neque eveniet provident explicabo velit ex?
+        </span>
       </div>
-      <div className={styles.title}>
-        <h1 style={{ width: "max-content", whiteSpace: "nowrap" }}>타이틀</h1>
-        <TextEllipsis
-          text="Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto delectus ad, rem debitis quis a quia sed consequuntur
-              dolores voluptatum iure accusantium qui animi molestiae dolore
-              reiciendis eos! Hic, neque?"
-        />
-      </div> */}
+      <TextEllipsis />
     </div>
   );
 }

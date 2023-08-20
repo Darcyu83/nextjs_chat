@@ -14,6 +14,15 @@ $variable: true;
   grid-template-columns: minmax(120px, 200px) minmax(250px, 1fr);
   grid-template-rows: 60px 1fr 60px;
   gap: 8px;
+  // grid-template-columns: $side-nav-bar-width minmax(
+  //     300px,
+  //     calc(100% - $side-nav-bar-width - $grid-area-gap)
+  //   );
+  // grid-template-rows:
+  //   $header-height
+  //   $content-height
+  //   $footer-height;
+  // gap: $grid-area-gap;
 }
 
 .header {

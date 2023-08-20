@@ -1,10 +1,19 @@
+// .container {
+//   display: grid;
+//   width: 100%;
+//   grid-template-columns: 150px 1fr;
+//   grid-template-rows: 1fr;
+//   border: 1px solid red;
+// }
+@import "../../styles/constants";
+
 .container {
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  grid-template-rows: 1fr;
+  display: flex;
+  width: 100%;
+  max-width: $content-max-width;
+  overflow: hidden;
   border: 1px solid red;
 }
-
 .list {
   display: flex;
   padding: 16px;

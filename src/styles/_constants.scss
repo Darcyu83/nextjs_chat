@@ -1,2 +1,14 @@
 $red: #f00;
 $my-color-blue: #ebeb !default;
+
+$grid-area-gap: 8px;
+$side-nav-bar-width: 150px;
+$header-height: 60px;
+$footer-height: 60px;
+$content-height: calc(
+  100% - $header-height - $footer-height - $grid-area-gap * 2
+);
+
+$content-max-width: calc(100vw - $side-nav-bar-width - $grid-area-gap);
+
+$gradient: #ee7752, #e73c7e, #23a6d5, #23d5ab;

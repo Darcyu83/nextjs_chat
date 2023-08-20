@@ -1,14 +1,20 @@
 import React from "react";
-import NavButton from "../../components/common/button/NavButton";
+import DragDropable from "../../components/dragDropable/DragDropable";
+import styles from "./page.module.scss";
 
 interface IProps {}
 
 function TutorialMain(props: IProps) {
   return (
-    <div style={{}}>
+    <div className={styles.container}>
       <h1>TutorialMain</h1>
+      <DragDropable title="내 취미" />
     </div>
   );
 }
 
 export default TutorialMain;
+
+// 12 : 23460
+// 34 :
+// 56 : 29520

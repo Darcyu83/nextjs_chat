@@ -16,23 +16,7 @@ async function TutorialLayout({ children }: IProps) {
   //   .then((res) => res.json())
   //   .then((data) => data);
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.list}>
-        {data.map((info) => (
-          <Link href={`/tutorial/details/${info.id}`} key={info.title}>
-            {info.title}
-          </Link>
-        ))}
-      </div>
-
-      <div className={styles.content}>
-        {children}
-
-        <ControlPanel />
-      </div>
-    </div>
-  );
+  return <div className={styles.container}>{children}</div>;
 }
 
 export default TutorialLayout;

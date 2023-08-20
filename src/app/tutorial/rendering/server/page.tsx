@@ -13,19 +13,18 @@ async function ServerSideRendering(props: IProps) {
   //   .then((data) => {
   //     return data;
   //   });
-
   return (
     <div style={{}}>
       <h1>ServerSideRendering</h1>
 
-      {data.map((info) => {
+      {/* {data.map((info) => {
         return (
           <>
             <p>title: {info.title}</p>
             <p>content: {info.content}</p>
           </>
         );
-      })}
+      })} */}
     </div>
   );
 }
