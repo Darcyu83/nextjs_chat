@@ -1,57 +1,63 @@
 "use client";
-
 import { useRouter } from "next/navigation";
-import React from "react";
-
+import React, { useEffect } from "react";
+import styles from "./styles.module.scss";
+import RoomsList from "@components/chat/rooms/list/RoomsList";
+import RoomRegForm from "@components/chat/roomRegForm/RoomRegForm";
+import { io } from "socket.io-client";
+import { SocketCustomEvent } from "./type";
+import { useSocketContext } from "../../context/SocketProvider";
 interface IProps {}
 
 function ChatMain(props: IProps) {
+  const { roomSocket } = useSocketContext();
+
   const router = useRouter();
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const { roomNm, capacity } = e.currentTarget;
+  const navToChatRoom = () => {};
 
-    function assertIsFormElment(
-      el: Element | HTMLButtonElement | HTMLSelectElement
-    ): asserts el is HTMLInputElement {
-      if (!("value" in el)) {
-        return;
-      }
-    }
+  useEffect(() => {
+    console.log("여기 로딩하나??");
+    // const socket = io("http://localhost:4013/room", {
+    //   path: "/yuds.socket.io", //  / 빼먹으면 동작 안함.
+    // });
 
-    assertIsFormElment(roomNm);
-    assertIsFormElment(capacity);
+    const socket = roomSocket.connect();
 
-    const params = {
-      roomNm: roomNm.value,
-      capacity: capacity.value,
+    socket.on("connect", () => {
+      console.log("Room socket :: 연결");
+
+      socket.on(SocketCustomEvent.NEW_ROOM, (msg) => {
+        console.log(
+          " %c SocketCustomEvent.NEW_ROOM ===== 0",
+          "color: yellow",
+          msg
+        );
+
+        // router.push(`/chat${msg}`)
+
+        // socket.emit(SocketCustomEvent.NEW_ROOM, "방만들기 요청 from client");
+      });
+
+      socket.on("disconnect", () => {
+        console.log("Room socket :: 연결안됨");
+      });
+    });
+
+    return () => {
+      socket.disconnect();
     };
+  }, []);
 
-    console.log("form data check ==== ", params);
-  };
   return (
-    <div className=".container">
-      <h1>Chat Landing page</h1>
+    <div className={styles.container}>
+      <h1>채팅룸 리스트</h1>
+      <RoomsList />
 
-      <h1>채팅방 만들기</h1>
-      <form
-        onSubmit={(e) => {
-          onSubmit(e);
-        }}
-      >
-        <ol>
-          <li>
-            <input placeholder="방제목" name="roomNm" />
-          </li>
-          <li>
-            <input placeholder="방인원" name="capacity" />
-          </li>
-          <li>
-            <input type="submit" value={"제출"} />
-          </li>
-        </ol>
-      </form>
+      <div className={styles["floating-container"]}>
+        <h1>채팅방 만들기</h1>
+        <RoomRegForm />
+      </div>
     </div>
   );
 }

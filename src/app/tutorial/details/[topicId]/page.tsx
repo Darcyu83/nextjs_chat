@@ -1,5 +1,5 @@
 import React from "react";
-import NavButton from "../../../../components/common/button/NavButton";
+import NavButton from "../../../../components/common/button/CustomedNavBtn";
 
 interface IProps {
   params: {

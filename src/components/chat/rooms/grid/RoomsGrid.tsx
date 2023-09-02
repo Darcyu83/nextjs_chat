@@ -1,15 +1,9 @@
 import React from "react";
-import RoomCard from "./roomCard/RoomCard";
-import styles from "./Rooms.module.scss";
+import RoomGridCard from "./roomGridCard/RoomGridCard";
+import styles from "./RoomsGrid.module.scss";
+import { TRoom } from "../../types";
 
-export interface TRoom {
-  id: number;
-  imgUrl: string;
-  lastMsg: string;
-  sender: string;
-  sentDate: string;
-}
-const roomInfos: TRoom[] = [
+export const roomInfos: TRoom[] = [
   {
     id: 1,
     imgUrl: "http://localhost:3000 ",
@@ -87,14 +81,14 @@ const roomInfos: TRoom[] = [
 
 interface IProps {}
 
-function Rooms(props: IProps) {
+function RoomsGrid(props: IProps) {
   return (
     <div className={styles.container}>
       {roomInfos.map((room) => {
-        return <RoomCard key={"room_" + room.id} room={room} />;
+        return <RoomGridCard key={"room_" + room.id} room={room} />;
       })}
     </div>
   );
 }
 
-export default Rooms;
+export default RoomsGrid;

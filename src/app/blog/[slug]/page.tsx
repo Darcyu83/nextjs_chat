@@ -8,7 +8,7 @@ function page(props: IProps) {
   const { slug } = props.params;
 
   return (
-    <div style={{}}>
+    <div>
       <h1>page</h1>
       {slug}
     </div>

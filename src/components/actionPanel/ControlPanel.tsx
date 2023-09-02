@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import NavButton from "../common/button/NavButton";
+import NavButton from "../common/button/CustomedNavBtn";
 import { useParams } from "next/navigation";
 interface IProps {}
 export default function ControlPanel({}: IProps) {

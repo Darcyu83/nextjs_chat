@@ -4,50 +4,81 @@ import React, { useEffect } from "react";
 
 import { io } from "socket.io-client";
 import styles from "./ChatRoom.module.scss";
+import { useSocketContext } from "../../../context/SocketProvider";
 
 interface IProps {}
 
-const SocketEvent = {
-  CONNECT: "connection",
-
-  DISCONNECT: "disconnect",
+const SocketCustomEvent = {
+  CONNECTION: "connection",
+  // DISCONNECTION: "disconnect",
+  NEW_ROOM: "newRoom",
 };
+
 function ChatRoom(props: IProps) {
+  const { chatSocket } = useSocketContext();
   useEffect(() => {
-    const socket = io("/chat");
+    // const socket = io("http://localhost:4013/chat", {
+    //   path: "/yuds.socket.io",
+    // });
 
-    socket.on(SocketEvent.CONNECT, () => {
-      console.log(SocketEvent.CONNECT, socket.connected);
+    const socket = chatSocket.connect();
 
-      const engine = socket.io.engine;
-      console.log(engine.transport.name); // in most cases, prints "polling"
+    // socket default event
+    socket.on("connect", () => {
+      console.log(" %c connect socket default event ", "color: red");
 
-      engine.once("upgrade", () => {
-        // called when the transport is upgraded (i.e. from HTTP long-polling to WebSocket)
-        console.log("engine", engine.transport.name); // in most cases, prints "websocket"
+      socket.on(SocketCustomEvent.NEW_ROOM, (msg) => {
+        console.log(
+          " %c SocketCustomEvent.NEW_ROOM ===== 0",
+          "color: yellow",
+          msg
+        );
+
+        socket.emit(SocketCustomEvent.NEW_ROOM, "방만들기 요청 from client");
       });
 
-      engine.on("packet", ({ type, data }) => {
-        // called for each packet received
+      socket.on(SocketCustomEvent.CONNECTION, () => {
+        console.log(
+          "SocketCustomEvent.CONNECTION ==== ",
+          SocketCustomEvent.CONNECTION,
+          socket.connected
+        );
       });
 
-      engine.on("packetCreate", () => {
-        // called for each packet sent
+      // socket default event
+      socket.on("disconnect", () => {
+        console.log(" %c disconnect ===== 1", "color: red");
       });
 
-      engine.on("drain", () => {
-        // called when the write buffer is drained
-      });
+      // const engine = socket.io.engine;
+      // console.log(engine.transport.name); // in most cases, prints "polling"
 
-      engine.on("close", (reason) => {
-        // called when the underlying connection is closed
-      });
+      // engine.once("upgrade", () => {
+      //   // called when the transport is upgraded (i.e. from HTTP long-polling to WebSocket)
+      //   console.log("engine", engine.transport.name); // in most cases, prints "websocket"
+      // });
+
+      // engine.on("packet", ({ type, data }) => {
+      //   // called for each packet received
+      // });
+
+      // engine.on("packetCreate", () => {
+      //   // called for each packet sent
+      // });
+
+      // engine.on("drain", () => {
+      //   // called when the write buffer is drained
+      // });
+
+      // engine.on("close", (reason) => {
+      //   // called when the underlying connection is closed
+      // });
     });
 
-    socket.on(SocketEvent.DISCONNECT, () => {
-      console.log(SocketEvent.DISCONNECT, socket.connected);
-    });
-  });
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   return (
     <div className={styles.container}>

@@ -53,8 +53,8 @@ $variable: true;
 
 .border {
   // border-radius: 5px;
-  border: 1px solid $my-color-blue;
-  color: $my-color-blue;
+  border: 1px solid $primary;
+  color: $primary;
   border-radius: if($variable, 5px, null);
 }
 

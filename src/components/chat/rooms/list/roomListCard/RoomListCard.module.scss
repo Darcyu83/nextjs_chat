@@ -1,0 +1,41 @@
+@import "../../../../../styles/constants";
+
+.container {
+  display: grid;
+  grid-template-areas:
+    "name lock"
+    "msg msg"
+    "date btn";
+
+  grid-template-columns: 1fr 80px;
+  grid-template-rows: repeat(3, max-content);
+  margin: 12px 8px;
+  gap: 4px;
+  justify-content: start;
+}
+
+.name {
+  grid-area: name;
+  color: #191919;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.msg {
+  grid-area: msg;
+  color: darkgray;
+  font-size: 12px;
+}
+.date {
+  grid-area: date;
+  font-size: 14px;
+  color: #707070;
+}
+
+.btn {
+  grid-area: btn;
+  display: grid;
+  place-items: center;
+}

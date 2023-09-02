@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import React from "react";
-import Rooms from "../components/chat/rooms/Rooms";
-import styles from "./Main.module.scss";
+import RoomsGrid from "../components/chat/rooms/grid/RoomsGrid";
+import styles from "./styles.module.scss";
 interface IProps {
   // params: { rtnMsg: string };
 }
@@ -14,7 +14,9 @@ function Main({}: IProps) {
   return (
     <div className={styles.container}>
       {/* 챗룸 리스트 */}
-      <Rooms />
+      <h1 className={styles["page-title"]}>채팅방 리스트</h1>
+
+      <RoomsGrid />
       {/* 블로그 리스트 */}
       {/* <Rooms /> */}
     </div>
@@ -24,11 +26,12 @@ function Main({}: IProps) {
 export default Main;
 
 export const generateStaticParams = async (ctx: any) => {
+  const delay = 1;
   const rtnMsg = await new Promise<string>((res, rej) => {
     setTimeout(() => {
-      console.log("타임아웃 실행됨.");
+      console.log(`Fetching delay ${delay / 1000}초 후 실행됨.`);
       res("result from generateStaticParams ");
-    }, 1);
+    }, delay);
   });
 
   console.log("타임아웃 실행됨. == =결과 리턴", rtnMsg, ctx);

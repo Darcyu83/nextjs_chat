@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import styles from "./BlogMain.module.scss";
+import styles from "./styles.module.scss";
 import TextEllipsis from "../../components/common/textEllipsis/TextEllipsis";
 import useWindowSize from "../../hooks/useWindowSize";
 interface IProps {}

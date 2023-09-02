@@ -1,0 +1,22 @@
+@import "../../styles/_constants.scss";
+
+.container {
+  // position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 1em;
+}
+
+.floating-container {
+  background: white;
+  position: absolute;
+  bottom: 70px;
+  left: 5%;
+  border: 1px solid $green;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

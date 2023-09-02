@@ -1,14 +1,15 @@
+@import "../../../styles/constants";
+
 .outlined {
   margin: 6px;
   width: fit-content;
-  display: inline-block;
-  padding: 2px 6px;
+  display: grid;
+  place-items: center;
   border-radius: 5px;
-  border: 1px solid #e77e;
-  color: #e77e;
+  color: $orange;
 
   &:hover {
-    background: #e76a7e;
+    background: $primary;
     color: white;
   }
 }

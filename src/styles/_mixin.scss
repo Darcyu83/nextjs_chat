@@ -1,4 +1,5 @@
 @import "./variables";
+@import "./constants";
 
 @mixin grid-tile-breaks {
   @media (max-width: $breakpoint-tablet) {
@@ -16,4 +17,10 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+@mixin font-14-black {
+  color: black;
+  font-size: 14px;
+  line-height: 14px;
 }

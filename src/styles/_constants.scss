@@ -1,5 +1,9 @@
 $red: #f00;
-$my-color-blue: #ebeb !default;
+$primary: #ebeb !default;
+$orange: #ee7752;
+$pink: #e73c7e;
+$blue: #23a6d5;
+$green: #23d5ab;
 
 $grid-area-gap: 8px;
 $side-nav-bar-width: 150px;
@@ -11,4 +15,4 @@ $content-height: calc(
 
 $content-max-width: calc(100vw - $side-nav-bar-width - $grid-area-gap);
 
-$gradient: #ee7752, #e73c7e, #23a6d5, #23d5ab;
+$gradient: $orange, $pink, $blue, $green;

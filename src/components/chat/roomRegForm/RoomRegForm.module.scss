@@ -1,0 +1,10 @@
+.flex-col-6 {
+  height: 100px;
+
+  & > ol {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+}

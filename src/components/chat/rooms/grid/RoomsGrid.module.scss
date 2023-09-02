@@ -29,7 +29,7 @@
   grid-area: j;
 }
 
-@import "../../../styles/mixin";
+@import "../../../../styles/mixin";
 @include grid-tile-breaks {
   .container {
     grid-template-areas:

@@ -1,6 +1,6 @@
 import React from "react";
 import DragDropable from "../../components/dragDropable/DragDropable";
-import styles from "./page.module.scss";
+import styles from "./styles.module.scss";
 
 interface IProps {}
 

@@ -108,7 +108,6 @@ function DragDropable({ title }: IProps) {
                   ? styles["dragged-item"]
                   : ""
               )
-
               .join(" ")}
           >
             <TextEllipsis text={str} rowNum={idx + 1} />

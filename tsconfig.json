@@ -20,8 +20,11 @@
       },
       { "name": "typescript-plugin-css-modules" }
     ],
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["/*"],
+      "@style/*": ["styles/*"],
+      "@components/*": ["components/*"]
     }
   },
   "include": [
