@@ -14,7 +14,7 @@ const {
   path,
 } = SocketConfig;
 
-const socketManager = new Manager(baseUrl, { path, autoConnect: false });
+// const socketManager = new Manager(baseUrl, { path, autoConnect: false });
 // const roomSocket = socketManager.socket(ROOM);
 // const chatSocket = socketManager.socket(CHAT);
 const roomSocket = io(`${baseUrl}/${ROOM}`, { path, autoConnect: false });
@@ -32,6 +32,7 @@ function SocketProvider({ children }: IProps) {
   const value = useMemo(() => {
     return { roomSocket, chatSocket };
   }, []);
+
   return (
     <SocketContext.Provider value={value}>{children}</SocketContext.Provider>
   );

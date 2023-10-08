@@ -17,7 +17,6 @@ function ChatMain(props: IProps) {
   const navToChatRoom = () => {};
 
   useEffect(() => {
-    console.log("여기 로딩하나??");
     // const socket = io("http://localhost:4013/room", {
     //   path: "/yuds.socket.io", //  / 빼먹으면 동작 안함.
     // });
@@ -27,6 +26,17 @@ function ChatMain(props: IProps) {
     socket.on("connect", () => {
       console.log("Room socket :: 연결");
 
+      socket.on(SocketCustomEvent.NEW_ROOM, (msg) => {
+        console.log(
+          " %c SocketCustomEvent.NEW_ROOM ===== 0",
+          "color: yellow",
+          msg
+        );
+
+        // router.push(`/chat${msg}`)
+
+        // socket.emit(SocketCustomEvent.NEW_ROOM, "방만들기 요청 from client");
+      });
       socket.on(SocketCustomEvent.NEW_ROOM, (msg) => {
         console.log(
           " %c SocketCustomEvent.NEW_ROOM ===== 0",

@@ -2,13 +2,23 @@
 import React from "react";
 import { useSocketContext } from "../../../context/SocketProvider";
 import styles from "./RoomRegForm.module.scss";
+import { useRouter } from "next/navigation";
 
 interface IProps {}
 
 function RoomRegForm(props: IProps) {
-  const { roomSocket } = useSocketContext();
-  console.log("룸소켓컨텍스트 2", roomSocket);
+  const { roomSocket, chatSocket } = useSocketContext();
 
+  const router = useRouter();
+
+  console.log("룸소켓컨텍스트 2", roomSocket, chatSocket);
+
+  const onEnterChat = (roomId: number) => {
+    // const url = (process.env.NEXT_PUBLIC_BASE_URL ?? "") + `/chat/${roomId}`;
+    // fetch(url, { method: "GET" });
+
+    router.push(`/chat/${roomId}`);
+  };
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { roomNm, max, password } = e.currentTarget;
@@ -39,7 +49,11 @@ function RoomRegForm(props: IProps) {
       body: JSON.stringify(params),
     })
       .then((res) => res.json())
-      .then((data) => console.log("data === ", data))
+      .then((data) => {
+        console.log("data === ", data);
+
+        onEnterChat(data._id);
+      })
       .catch((err) => console.log("페치 에러 ", err));
   };
 
