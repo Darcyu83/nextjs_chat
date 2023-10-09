@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import React from "react";
 import RoomsGrid from "../components/chat/rooms/grid/RoomsGrid";
 import styles from "./styles.module.scss";
+import GalaxyBtn from "../components/common/button/galaxyBtn/GalaxyBtn";
 interface IProps {
   // params: { rtnMsg: string };
 }
@@ -16,6 +17,7 @@ function Main({}: IProps) {
       {/* 챗룸 리스트 */}
       <h1 className={styles["page-title"]}>채팅방 리스트</h1>
 
+      <GalaxyBtn />
       <RoomsGrid />
       {/* 블로그 리스트 */}
       {/* <Rooms /> */}

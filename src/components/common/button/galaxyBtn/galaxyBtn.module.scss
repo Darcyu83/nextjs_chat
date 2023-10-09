@@ -1,0 +1,64 @@
+$transition: 0.25s;
+$spark: 1.8s;
+$hue: 245;
+
+.galaxy-button {
+  $active: 0;
+  width: 100%;
+  height: 200px;
+
+  display: grid;
+  align-items: center;
+  background: hsl($hue calc($active * 97%) 6%);
+  transition: background $transition;
+  overflow: hidden;
+}
+
+.btn {
+  $cut: 0.1em;
+  $active: 0;
+  background: radial-gradient(
+        120% 120% at 126% 126%,
+        hsl(var($hue) calc(var($active) * 97%) 98% / calc(var($active) * 0.9))
+          40%,
+        transparent 50%
+      )
+      calc(100px - (var($active) * 100px)) 0 / 100% 100% no-repeat,
+    radial-gradient(
+        120% 120% at 120% 120%,
+        hsl(var($hue) calc(var($active) * 97%) 70% / calc(var($active) * 1)) 30%,
+        transparent 70%
+      )
+      calc(100px - (var($active) * 100px)) 0 / 100% 100% no-repeat,
+    hsl(var($hue) calc(var($active) * 100%) calc(12% - (var($active) * 8%)));
+
+  font-size: 2rem;
+  font-weight: 500;
+  border: 0;
+  cursor: pointer;
+  padding: 0.9em 1.3em;
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+  white-space: nowrap;
+  border-radius: 2rem;
+  position: relative;
+  box-shadow: 0 0 calc(var($active) * 6em) calc(var($active) * 3em)
+      hsl(var($hue) 97% 61% / 0.5),
+    0 0.05em 0 0
+      hsl(var($hue) calc(var($active) * 97%) calc((var($active) * 50%) + 30%))
+      inset,
+    0 -0.05em 0 0 hsl(
+        var($hue) calc(var($active) * 97%) calc(var($active) * 10%)
+      ) inset;
+  transition: box-shadow var($transition), scale var($transition),
+    background var($transition);
+  scale: calc(1 + (var($active) * 0.1));
+  transform-style: preserve-3d;
+  perspective: 100vmin;
+  overflow: hidden;
+}
+
+.btn:active {
+  scale: 1;
+}
