@@ -3,23 +3,27 @@ import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.scss";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { menuData } from "./menuData";
+import { TMenuTitles, menuData } from "./menuData";
+import { UrlObject } from "url";
 
 function Navbar() {
   const path = usePathname();
 
   return (
     <nav className={[styles.nav].join(" ")}>
-      {menuData.map((menu, idx) => {
+      {Object.keys(menuData).map((key, idx) => {
+        const _key = key as TMenuTitles;
         return (
           <Link
             key={`menu_${idx}`}
             className={
-              menu.path === `/${path.split("/")[1]}` ? styles.active : undefined
+              menuData[key as TMenuTitles].path === `/${path.split("/")[1]}`
+                ? styles.active
+                : undefined
             }
-            href={menu.path}
+            href={menuData[_key].path}
           >
-            {menu.title}
+            {menuData[_key].title}
           </Link>
         );
       })}

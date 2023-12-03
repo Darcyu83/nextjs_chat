@@ -1,10 +1,13 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import { IRoomInfo, TRoom } from "../../../types";
 import styles from "./RoomListCard.module.scss";
 import Image from "next/image";
 import CustomedNavBtn from "../../../../common/button/CustomedNavBtn";
 import Link from "next/link";
 import { Metadata } from "next";
+import { menuData } from "../../../../navbar/menuData";
+import { useSocketContext } from "../../../../../context/SocketProvider";
 
 interface IProps {
   info: IRoomInfo;
@@ -19,6 +22,7 @@ function RoomListCard({ info }: IProps) {
     <div className={styles.container}>
       <div className={styles.name}>
         <p>{info.title}</p>
+
         {info.password && (
           <Image
             src={"/icons/lock.png"}
@@ -32,7 +36,7 @@ function RoomListCard({ info }: IProps) {
       <p className={styles.msg}>{info.max}</p>
       <p className={styles.date}>{info.createdAt}</p>
 
-      <Link href={`/chat/${info._id}`} className={styles.btn}>
+      <Link href={`${menuData.chat.path}/${info._id}`} className={styles.btn}>
         <Image
           src={"/icons/enter.png"}
           alt="입장"

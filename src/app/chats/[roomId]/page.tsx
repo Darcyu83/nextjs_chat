@@ -42,85 +42,88 @@ function ChatRoom(props: IProps) {
   const [chatMsg, setChatMsg] = useState("");
   const [chatInfoAll, setChatInfoAll] = useState<ResChatInfoAll | null>(null);
 
+  const createChatPrams = (chatInfoAll: ResChatInfoAll, message = "") => ({
+    message,
+    sender: chatInfoAll.user,
+    sendee: chatInfoAll.room.owner,
+    roomId: params.roomId,
+  });
+
   const onSendMsg = () => {
     // chatSocket.emit(SocketCustomEvent.CHAT, chatMsg);
     // 디비에 채팅 메시지 저장후 메시지 전달
-    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/chat/room/${params.roomId}/chat`;
 
     const bodyData = { chat: chatMsg };
-    console.log("yuds = ==== ", url);
-    fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(bodyData),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.log("성공 ", url, data);
-        setChatMsg("");
-      });
-  };
 
-  const socketRef = useRef<Socket | null>(null);
+    if (!chatInfoAll) return;
+    const chatParams = createChatPrams(chatInfoAll, chatMsg);
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/chat/room/${params.roomId}/chat`;
+    console.log("yuds onSendMsg ==== ", chatSocket, url);
+
+    chatSocket.emit("chat", chatParams);
+
+    // fetch(url, {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(bodyData),
+    // })
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     console.log("성공 ", url, data);
+    //     setChatMsg("");
+    //   });
+  };
 
   useEffect(() => {
     // const socket = io("http://localhost:4013/chat", {
     //   path: "/yuds.socket.io",
     // });
 
-    // if (socketRef.current) return;
+    if (chatSocket.connected) return;
 
-    socketRef.current = chatSocket.connect();
+    chatSocket.connect();
 
-    const socket = socketRef.current;
-
-    console.log(
-      " %c connect socket default event ",
-      "color: red",
-      socketRef.current,
-      "---",
-      socket
-    );
     // socket default event
-    socket.on("connect", () => {
-      console.log(" %c connect socket default event ", "color: red");
+    chatSocket.on("connect", () => {
+      console.log(
+        " %c connect socket default event params.roomId",
+        "color: red",
+        params.roomId
+      );
 
-      socket.emit(SocketCustomEvent.JOIN, params.roomId);
-      socket.on(SocketCustomEvent.JOIN, (msg) => {
-        console.log(
-          " %c SocketCustomEvent.NEW_ROOM ===== 0",
-          "color: yellow",
-          msg
-        );
+      chatSocket.emit(SocketCustomEvent.JOIN, params.roomId);
 
-        // socket.emit(SocketCustomEvent.NEW_ROOM, "방만들기 요청 from client");
+      chatSocket.on("entered", (msg) => {
+        console.log(" %c entered ===== 0", "color: perple", msg);
+
+        // chatSocket. emit(SocketCustomEvent.NEW_ROOM, "방만들기 요청 from client");
       });
 
-      socket.on(SocketCustomEvent.CONNECTION, () => {
+      chatSocket.on(SocketCustomEvent.CONNECTION, () => {
         console.log(
           "%cSocketCustomEvent.CONNECTION ==== ",
           "color: red",
           SocketCustomEvent.CONNECTION,
-          socket.connected
+          chatSocket.connected
         );
       });
 
       // socket default event
-      socket.on("disconnect", () => {
+      chatSocket.on("disconnect", () => {
         console.log(" %c disconnect ===== 1", "color: red");
       });
 
-      socket.on("chat", (data) => {
-        console.log(" %c chat ===== ", "color: teal", data);
+      chatSocket.on("chat", (data) => {
+        console.log(" %c chat ===== arrived", "color: teal", data);
 
-        setChatInfoAll((curr) =>
-          curr ? { ...curr, chats: [...curr.chats, data] } : curr
-        );
+        // setChatInfoAll((curr) =>
+        //   curr ? { ...curr, chats: [...curr.chats, data] } : curr
+        // );
       });
 
-      // const engine = socket.io.engine;
+      // const engine = chatSocket. io.engine;
       // console.log(engine.transport.name); // in most cases, prints "polling"
 
       // engine.once("upgrade", () => {
@@ -146,9 +149,9 @@ function ChatRoom(props: IProps) {
     });
 
     return () => {
-      socket.disconnect();
+      chatSocket.disconnect();
     };
-  }, []);
+  }, [chatSocket, params.roomId]);
 
   useEffect(() => {
     const url = `${process.env.NEXT_PUBLIC_BASE_URL}/chat/room/${params.roomId}`;
@@ -161,13 +164,14 @@ function ChatRoom(props: IProps) {
         setChatInfoAll(data);
       });
   }, []);
+
   return (
     <div className={styles.container}>
       <h1 className={styles["page-title"]}>노드 채팅방</h1>
 
       <div className={styles.content}>
         <div className={styles["content-left"]}>
-          {chatInfoAll?.chats.map((chat, idx) => {
+          {chatInfoAll?.chats?.map((chat, idx) => {
             return (
               <p key={chat._id}>
                 {chat.user} :: {chat.chat}

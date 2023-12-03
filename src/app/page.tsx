@@ -14,10 +14,6 @@ export const metadata: Metadata = {
 function Main({}: IProps) {
   return (
     <div className={styles.container}>
-      {/* 챗룸 리스트 */}
-      <h1 className={styles["page-title"]}>채팅방 리스트</h1>
-
-      <GalaxyBtn />
       <RoomsGrid />
       {/* 블로그 리스트 */}
       {/* <Rooms /> */}

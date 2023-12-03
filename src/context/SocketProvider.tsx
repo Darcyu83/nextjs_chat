@@ -11,16 +11,28 @@ interface IProps {
 const {
   baseUrl,
   namespace: { ROOM, CHAT },
-  path,
+  path: SOKECT_PATH,
 } = SocketConfig;
 
 // const socketManager = new Manager(baseUrl, { path, autoConnect: false });
 // const roomSocket = socketManager.socket(ROOM);
 // const chatSocket = socketManager.socket(CHAT);
-const roomSocket = io(`${baseUrl}/${ROOM}`, { path, autoConnect: false });
-const chatSocket = io(`${baseUrl}/${CHAT}`, { path, autoConnect: false });
+
+const globalSocket = io(`${baseUrl}`, {
+  path: SOKECT_PATH,
+  autoConnect: false,
+});
+const roomSocket = io(`${baseUrl}/${ROOM}`, {
+  path: SOKECT_PATH,
+  autoConnect: false,
+});
+const chatSocket = io(`${baseUrl}/${CHAT}`, {
+  path: SOKECT_PATH,
+  autoConnect: false,
+});
 
 export interface ISocketContext {
+  globalSocket: Socket;
   roomSocket: Socket;
   chatSocket: Socket;
 }
@@ -30,7 +42,7 @@ export const useSocketContext = () => useContext(SocketContext);
 
 function SocketProvider({ children }: IProps) {
   const value = useMemo(() => {
-    return { roomSocket, chatSocket };
+    return { globalSocket, roomSocket, chatSocket };
   }, []);
 
   return (

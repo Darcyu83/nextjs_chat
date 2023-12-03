@@ -4,5 +4,8 @@ export const SocketCustomEvent = {
   NEW_ROOM: "newRoom" as const,
   JOIN: "join" as const,
 
-  CHAT: "chat",
+  CHAT: "chat" as const,
+
+  TO_TEST: "totest" as const,
+  BROADCAST_TEST: "broadcasttest" as const,
 };
